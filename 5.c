@@ -2,8 +2,6 @@
 #include "math.h"
 #include "stdlib.h"
 
-
-
 void print(int sol[], int n, int ct){
 	int i, j;
 	printf("\n\n----------------------------------------------------------------------------\n\n");
