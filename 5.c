@@ -41,21 +41,21 @@ int nqrecursive(int row, int limit, int sol[], int type, int *ct){
 			}
 			int ok = nqrecursive(row + 1, limit, sol, type, ct);
 			if(ok) return 1;
-			else sol[row] = 0;
+			else sol[row] = -1;
 		}
 	}
 	return 0;
 }
 
-void nqiterative(int limit, int sol[], int type, int ct){
+void nqiterative(int limit, int sol[], int type, int *ct){
 	int k = 0;
 	while(k != -1){
 		sol[k]++;
 		if(sol[k] < limit){
 			if(check(sol, k)){
 				if(k == limit - 1){
-					ct++;
-					print(sol, limit, ct);
+					(*ct)++;
+					print(sol, limit, *ct);
 					if(type == 1) return;
 				}
 				else{
@@ -79,8 +79,8 @@ int main(){
 		scanf("%d", &m);
 	}
 	int *solution = (int *) malloc (m * sizeof(int));
-	for(int i = 0; i < m; i++) solution[i] = -1;
 	while(1){
+		for(int i = 0; i < m; i++) solution[i] = -1;
 		printf("Select one of the Option\n1. One Solution \n2. All Solution \n3.Exit\n");
 		scanf("%d", &type);
 		if(type == 3) return 0;
@@ -88,9 +88,9 @@ int main(){
 		scanf("%d", &n);
 		ct = 0;
 		if(n == 1)
-			nqrecursive(0, m, solution, type,&ct);
+			nqrecursive(0, m, solution, type, &ct);
 		else
-			nqiterative(m, solution, type, ct);
+			nqiterative(m, solution, type, &ct);
 		printf("Total no of solutions: %d\n", ct);
 		printf("################################################################################\n");
 	}
