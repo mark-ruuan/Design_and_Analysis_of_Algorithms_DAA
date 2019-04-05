@@ -7,10 +7,12 @@ int TSP(int st, vector<int> v, int **dist, map<pair<int, vector<int> >, int> &dp
 	if(v.size() == 0) mn = dist[st][0];
 	else{
 		for(int i = 0; i < v.size(); i++){
-			if(dist[st][v[i]]){
+			if(dist[st][v[i]] != INT_MAX){
 				vector<int> vv = v;
 				vv.erase(vv.begin() + i);
-				mn = min(mn, dist[st][v[i]] + TSP(v[i], vv, dist, dp));
+				int nxt = TSP(v[i], vv, dist, dp);
+				if(nxt != INT_MAX)
+					mn = min(mn, dist[st][v[i]] + nxt);
 			}
 		}
 	}
@@ -81,12 +83,13 @@ int main(){
 				else{
 					j++;
 				}
+				if(i == j) dist[i][j] = INT_MAX;
 			}
 		}
 	}
 	else{
 		for(int i = 0; i < n; i++)
-			for(int j = 0; j < n;  j++) dist[i][j] = 0;
+			for(int j = 0; j < n;  j++) dist[i][j] = INT_MAX;
 		int e, i = 0, sc, d, w;
 		cout << "Enter the no of edges\n";
 		cin >> e;
@@ -98,9 +101,9 @@ int main(){
 		while(i < e){
 			cout << "Enter the source, destination and weight of edge " << i + 1 << ": ";
 			cin >> sc >> d >> w;
-			if(sc > n || sc < 1 || d > n || d < 1 ||  sc== d || w < 0) 
+			if(sc > n || sc < 1 || d > n || d < 1 ||  sc== d || w <= 0) 
 				cout << "Invalid Entry, Plz enter again\n";
-			else if(dist[sc - 1][d - 1])
+			else if(dist[sc - 1][d - 1] != INT_MAX)
 				cout << "Edge already exits, Plz enter again\n";
 			else{
 				dist[sc - 1][d - 1] = w;
@@ -113,7 +116,7 @@ int main(){
 	cout << "\n**The DP TABLE**\n";
 	display(n, dp);
 	if(min_cost == INT_MAX)
-		return cout << "All cities cannot be travelled\n", 0;
+		return cout << "Tour does not exits.\n", 0;
 	cout << "The Shortest distance is: " << min_cost << "\n";
 	find_path(0, v, 0, dist, dp, path);
 	cout << "The Shortest Hamiltonian Tour is : ";
@@ -122,4 +125,3 @@ int main(){
 	cout << "1\n";
 	return 0;
 }
-
