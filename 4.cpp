@@ -83,12 +83,12 @@ int main(){
 				else{
 					j++;
 				}
-				if(i == j) dist[i][j] = INT_MAX;
+				if(dist[i][j] == 0) dist[i][j] = INT_MAX;
 			}
 		}
 	}
 	else{
-		for(int i = 0; i < n; i++)
+		for(i = 0; i < n; i++)
 			for(int j = 0; j < n;  j++) dist[i][j] = INT_MAX;
 		int e, i = 0, sc, d, w;
 		cout << "Enter the no of edges\n";
@@ -111,7 +111,7 @@ int main(){
 			}		
 		}
 	}
-	for(int i = 1; i < n; i++) v.push_back(i);
+	for(i = 1; i < n; i++) v.push_back(i);
 	min_cost = TSP(0, v, dist, dp);
 	cout << "\n**The DP TABLE**\n";
 	display(n, dp);
