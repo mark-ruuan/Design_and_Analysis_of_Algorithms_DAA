@@ -41,7 +41,6 @@ int nqrecursive(int row, int limit, int sol[], int type, int *ct){
 			}
 			int ok = nqrecursive(row + 1, limit, sol, type, ct);
 			if(ok) return 1;
-			else sol[row] = -1;
 		}
 	}
 	return 0;
