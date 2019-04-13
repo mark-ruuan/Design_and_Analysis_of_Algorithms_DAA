@@ -32,7 +32,7 @@ void find_path(int st, vector<int> v, int index, int **dist, map<pair<int, vecto
 }
 
 void display(int n, map<pair<int, vector<int> >, int> &dp){
-	map<pair<int, vector<int> >, int> :: iterator it, it1 = dp.begin();
+	map<pair<int, vector<int> >, int> :: iterator it;
 	for(int i = 0; i < n; i++){
 		cout << "|v| = " << i << "\n";
 		for(it = dp.begin(); it != dp.end(); it++){
@@ -45,7 +45,6 @@ void display(int n, map<pair<int, vector<int> >, int> &dp){
 				cout << "}) = " << ((it->second == INT_MAX) ? (-1) : (it->second)) << "\n";
 			}
 		}
-		it1++;
 		cout << "\n";
 	}
 }
