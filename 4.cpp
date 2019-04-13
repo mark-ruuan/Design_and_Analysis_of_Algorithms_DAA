@@ -101,7 +101,7 @@ int main(){
 		while(i < e){
 			cout << "Enter the source, destination and weight of edge " << i + 1 << ": ";
 			cin >> sc >> d >> w;
-			if(sc > n || sc < 1 || d > n || d < 1 ||  sc== d || w <= 0) 
+			if(sc > n || sc < 1 || d > n || d < 1 ||  sc == d || w < 0) 
 				cout << "Invalid Entry, Plz enter again\n";
 			else if(dist[sc - 1][d - 1] != INT_MAX)
 				cout << "Edge already exits, Plz enter again\n";
