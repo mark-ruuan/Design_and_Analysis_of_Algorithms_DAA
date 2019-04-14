@@ -34,7 +34,7 @@ void bellmanFord(Graph *graph, int src)
 		dist[i] = INT_MAX;
 	
 	dist[src] = 0;
-	for( i = 1; i <= v-1; ++i)
+	for( i = 0; i < v-1; ++i)
 	{
 		
 		flag = 0;
